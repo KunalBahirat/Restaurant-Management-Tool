@@ -60,6 +60,7 @@ void hideCursor(){
     SetConsoleCursorInfo(console,&cursor);
 }
 void welcome(){
+    coordxy(50,12); cout<<"Hotel Grand Food";
     hideCursor();
     coordxy(55,15);  cout<<"WELCOME";
     Sleep(500);
