@@ -37,19 +37,19 @@ void coordxy(int x,int y){
 }
 void graphic_interface(){
 
-    for(int i=1;i<=118;i++){
+    for(int i=1;i<=148;i++){
         coordxy(i,0); printf("%c",205);
-        coordxy(i,29); printf("%c",205);
+        coordxy(i,49); printf("%c",205);
     }
-    for(int i=1;i<=29;i++){
+    for(int i=1;i<=49;i++){
     	coordxy(1,i); printf("%c",186);
-    	coordxy(118,i); printf("%c",186);
+    	coordxy(148,i); printf("%c",186);
 	}
 
     coordxy(1,0); printf("%c",201);
     coordxy(1,29); printf("%c",200);
-    coordxy(118,0); printf("%c",187);
-    coordxy(118,29); printf("%c",188);
+    coordxy(148,0); printf("%c",187);
+    coordxy(148,29); printf("%c",188);
 }
 void hideCursor(){
     HANDLE console;
@@ -60,16 +60,16 @@ void hideCursor(){
     SetConsoleCursorInfo(console,&cursor);
 }
 void welcome(){
-    coordxy(50,12); cout<<"Hotel Grand Food";
+    coordxy(70,12); cout<<"Hotel Grand Food";
     hideCursor();
-    coordxy(55,15);  cout<<"WELCOME";
+    coordxy(75,15);  cout<<"WELCOME";
     Sleep(500);
-    coordxy(55,15);  cout<<"       ";
+    coordxy(75,15);  cout<<"       ";
     Sleep(500);
-    coordxy(55,15);  cout<<"WELCOME";
+    coordxy(75,15);  cout<<"WELCOME";
     Sleep(500);
-    coordxy(55,15);  cout<<"       ";
+    coordxy(75,15);  cout<<"       ";
     Sleep(500);
-    coordxy(55,15);  cout<<"WELCOME";
+    coordxy(75,15);  cout<<"WELCOME";
     
 }
