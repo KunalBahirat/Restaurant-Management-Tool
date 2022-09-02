@@ -62,7 +62,6 @@ void hideCursor(){
 void welcome(){
     coordxy(70,12); cout<<"Hotel Grand Food";
     coordxy(70,22);  cout<<"A restaurant management tool";
-    coordxy(80,23);  cout<<"-By Kunal Bahirat";
     hideCursor();
     coordxy(75,15);  cout<<"WELCOME";
     Sleep(500);

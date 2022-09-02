@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include "welcome.h"
-using namespace std;
 char key;
 int program_stop=false;
 const std::string currentDateTime() {       // fun to get date and time => putting in database
@@ -116,13 +115,13 @@ class Hotel{
             y+=2;
                coordxy(25,y++);std::cout<<(it->first);
                coordxy(15,y);std::cout<<"ID";
-			   coordxy(35,y); cout<<" NAME";
-			   coordxy(55,y);cout<<"PRICE";y++;
+			   coordxy(35,y); std::cout<<" NAME";
+			   coordxy(55,y);std::cout<<"PRICE";y++;
                auto it2=it->second.begin();
                while(it2!=it->second.end()){
                    coordxy(7,y);std::cout<<setw(10)<<*it2;
-                   coordxy(35,y); cout<<item_details[*it2].first;
-                   coordxy(55,y); cout<<item_details[*it2].second;
+                   coordxy(35,y); std::cout<<item_details[*it2].first;
+                   coordxy(55,y); std::cout<<item_details[*it2].second;
                    it2++;y++;
                }
                it++;
@@ -154,7 +153,7 @@ class Hotel{
                }
                std::cout<<"Enter Quantity of "<<item_details[id].first<<" : ";
                cin>>quantity; setw(20);
-			   if(count>5)cout<<"If Finished Press -1 \n";
+			   if(count>5)std::cout<<"If Finished Press -1 \n";
                ord<<id<<setw(35)<<item_details[id].first<<setw(30)<<quantity<<setw(30)<<quantity*item_details[id].second<<endl;
                total_amt+=quantity*item_details[id].second;
 
@@ -170,19 +169,19 @@ class Hotel{
            ord.close();
            dt_base.close();
            ofstream rev("Revenue",ios::app);
-            rev<<currentDateTime()<<setw(15)<<table_no<<setw(20)<<total_amt<<endl;
-            rev.close();
+           rev<<currentDateTime()<<setw(15)<<table_no<<setw(20)<<total_amt<<endl;
+           rev.close();
            return ;
        }
-       void generate_bill(){
+        void generate_bill(){
        	    int table_no;
-			cout<<"\nEnter Your Table Number : ";
+			std::cout<<"\nEnter Your Table Number : ";
        		cin>>table_no;
             string table_name="order table "+to_string(table_no);
 			ifstream bill(table_name);
 	        if (bill.is_open())
              std::cout << bill.rdbuf();
-    		cout<<"\n";
+    		std::cout<<"\n";
     		bill.close();
             
             remove(table_name.c_str());            
@@ -190,35 +189,44 @@ class Hotel{
        void show_revenue(){
           ifstream rev("Revenue");
           if(rev.is_open()){
-            cout<<rev.rdbuf();
+            std::cout<<rev.rdbuf();
           }
-          cout<<"\n";
+          std::cout<<"\n";
           rev.close();
+          getch();
+       }
+       void show_database(){
+          ifstream dtbase("Database");
+          if(dtbase.is_open()){
+              std::cout<<dtbase.rdbuf();
+          }
+          std::cout<<"\n";
+          dtbase.close();
           getch();
        }
 };
 void manager(char k,Hotel &obj);
 void customer(Hotel &grandFood){
     system("cls");
-    coordxy(30,5);cout<<"Hotel Grand Food";
-    coordxy(30,7); cout<<"WELCOME";
+    coordxy(30,5);std::cout<<"Hotel Grand Food";
+    coordxy(30,7); std::cout<<"WELCOME";
     Sleep(500);
-    coordxy(30,7); cout<<"       ";
+    coordxy(30,7); std::cout<<"       ";
     Sleep(500);
-    coordxy(30,7); cout<<"WELCOME";
+    coordxy(30,7); std::cout<<"WELCOME";
     Sleep(500);
-    coordxy(20,12); cout<<"Press 'a' To Show Menu "; 
-    coordxy(20,14); cout<<"Press 'b' To Order Food ";
-    coordxy(20,16); cout<<"Press 'c' To Generate Bill ";
-    coordxy(20,18); key =getch(); cout<<"=> "<<key;
+    coordxy(20,12); std::cout<<"Press 'a' To Show Menu "; 
+    coordxy(20,14); std::cout<<"Press 'b' To Order Food ";
+    coordxy(20,16); std::cout<<"Press 'c' To Generate Bill ";
+    coordxy(20,18); key =getch(); std::cout<<"=> "<<key;
     Sleep(500);
     if(key=='a'){
         system("cls");
         grandFood.show_menu();
-        coordxy(12,39);cout<<"Want To Order Your Meal ?  ";
+        coordxy(12,39);std::cout<<"Want To Order Your Meal ?  ";
         getch();
 		grandFood.order_food();
-		cout<<"           It Will take Just 20 Minutes  \n\t\tEnjoy The Meal!\n\tEnter 'z' to Exit ";
+		std::cout<<"           It Will take Just 20 Minutes  \n\t\tEnjoy The Meal!\n\tEnter 'z' to Exit ";
 		key=getch();
 		if(key=='z');
         return;
@@ -226,17 +234,17 @@ void customer(Hotel &grandFood){
     if(key=='b'){
     	system("cls");
         grandFood.show_menu();
-        coordxy(12,39);cout<<"Want To Order Your Meal ?  ";
+        coordxy(12,39);std::cout<<"Want To Order Your Meal ?  ";
         getch();
 		grandFood.order_food();
-		cout<<"           It Will take Just 20 Minutes  \n\t\tEnjoy The Meal!\n\tEnter 'z' to Exit ";
+		std::cout<<"           It Will take Just 20 Minutes  \n\t\tEnjoy The Meal!\n\tEnter 'z' to Exit ";
 		key=getch();
 		if(key=='z');
         return;
 	}
 	if(key=='c'){
 		manager('c',grandFood);
-		cout<<"\n\t\tEnter 'z' to Exit ";
+		std::cout<<"\n\t\tEnter 'z' to Exit ";
 		key=getch();
 		if(key=='z');
         return;
@@ -244,6 +252,7 @@ void customer(Hotel &grandFood){
 
 }
 void manager(char k,Hotel &grandFood){
+	
 	if(k=='c'){
 		grandFood.generate_bill();
 		return;
@@ -261,36 +270,38 @@ void manager(char k,Hotel &grandFood){
 void admin(Hotel &grandFood){
     string p;
     system("cls");
-    coordxy(20,5); cout<<"Hello Admin ";
-    coordxy(20,9); cout<<"Enter Password ";
-    coordxy(22,11); cout<<"=> ";cin>>p;
+    coordxy(20,5); std::cout<<"Hello Admin ";
+    coordxy(20,9); std::cout<<"Enter Password ";
+    coordxy(22,11); std::cout<<"=> ";cin>>p;
     int count=1;
     while(p!=grandFood.pass){
         if((count++)==5){
-           coordxy(23,15); cout<<"5 UnsuccesFul Attempts";
+           coordxy(23,15); std::cout<<"5 UnsuccesFul Attempts";
            getch();
            program_stop=true;
            return;
         }
-
-        coordxy(23,15);cout<<"Incorrect Password ";
+        coordxy(23,15);std::cout<<"Incorrect Password ";
         getch();
         system("cls");
-        coordxy(20,5); cout<<"Hello Admin ";
-        coordxy(20,9); cout<<"Enter Password ";
-        coordxy(22,11); cout<<"=> ";cin>>p;
+        coordxy(20,5); std::cout<<"Hello Admin ";
+        coordxy(20,9); std::cout<<"Enter Password ";
+        coordxy(22,11); std::cout<<"=> ";cin>>p;
     }
-    coordxy(23,15);cout<<" Password Matched! ";
+    coordxy(23,15);std::cout<<" Password Matched! ";
     getch();
     system("cls");
-    coordxy(40,8); cout<<"Admin Page";
-    coordxy(40,12); cout<<"a) Show Revenue ";
-    coordxy(40,13); cout<<"b) Show Bills ";
-    coordxy(40,14); cout<<"c) Add To Menu ";
-    coordxy(40,15); cout<<"d) End Program ";
-    coordxy(42,17); cout<<"=> ";cin>>key;
+    coordxy(40,8); std::cout<<"Admin Page";
+    coordxy(40,12); std::cout<<"a) Show Revenue ";
+    coordxy(40,13); std::cout<<"b) Show Database ";
+    coordxy(40,14); std::cout<<"c) Add To Menu ";
+    coordxy(40,15); std::cout<<"d) End Program ";
+    coordxy(42,17); std::cout<<"=> ";cin>>key;
     if(key=='a'){
         grandFood.show_revenue();
+    }
+    if(key=='b'){
+        grandFood.show_database();
     }
     if(key=='c'){
         grandFood.add_to_menu();
@@ -305,20 +316,20 @@ char login(){
     system("cls");
     graphic_interface();
     coordxy(40,8); std::cout<<"User Login";
-    coordxy(40,12); cout<<"a) Foodie ";
-    coordxy(40,14); cout<<"b) Manager ";
-    coordxy(40,16); cout<<"c) Admin ";
-    coordxy(40,19); cout<<"Respond Using Key 'a' or 'b' or 'c' "; key =getch(); 
-    coordxy(40,25); cout<<"Press 'z' to Exit";
+    coordxy(40,12); std::cout<<"a) Foodie ";
+    coordxy(40,14); std::cout<<"b) Manager ";
+    coordxy(40,16); std::cout<<"c) Admin ";
+    coordxy(40,19); std::cout<<"Respond Using Key 'a' or 'b' or 'c' "; key =getch(); 
+    coordxy(40,25); std::cout<<"Press 'z' to Exit";
     while (key!='a' and key!='b' and key!='c' and key!='z')
     {
-        coordxy(40,19); cout<<"Respond Using Key 'a' or 'b' or 'c'  ";key =getch();
-        coordxy(40,20); cout<<"Invalid Key ";
+        coordxy(40,19); std::cout<<"Respond Using Key 'a' or 'b' or 'c'  ";key =getch();
+        coordxy(40,20); std::cout<<"Invalid Key ";
     }
     if(key=='z'){
         program_stop=true;
     }
-    coordxy(40,22); cout<<" => "<<key;
+    coordxy(40,22); std::cout<<" => "<<key;
     Sleep(1500);
     return key;
 }
